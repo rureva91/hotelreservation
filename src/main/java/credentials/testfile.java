@@ -38,7 +38,7 @@ public class testfile {
 //    @Path("{id}")
     @Produces("application/json")
     public String doGet(@PathParam("id") String id) {
-        String str = getResults("SELECT * FROM HotelReservation", id);
+        String str = getResults("SELECT * FROM HotelReservation where name=?", id);
         return str;
     }
     private String getResults(String query, String... params) {

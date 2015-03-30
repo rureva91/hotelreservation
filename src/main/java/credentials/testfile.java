@@ -27,15 +27,15 @@ import javax.ws.rs.Produces;
 public class testfile {
     @Path("/testfile")
     
-//    @GET
-//    @Produces("application/json")
-//    public String doGet() {
-//        String str = getResults("SELECT * FROM HotelReservation");
-//        return str;
-//    }
+    @GET
+    @Produces("application/json")
+    public String doGet() {
+        String str = getResults("SELECT * FROM HotelReservation");
+        return str;
+    }
 
     @GET
-//    @Path("{id}")
+    @Path("{id}")
     @Produces("application/json")
     public String doGet(@PathParam("id") String id) {
         String str = getResults("SELECT * FROM HotelReservation where name=?", id);
@@ -64,7 +64,7 @@ public class testfile {
                         .add("check in", rs.getString("check in"))
                         .add("check out", rs.getString("check out"));
 
-                numChanges = jsonobj.build().toString();
+                
                 productArray.add(jsonobj);
             }
 

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package credentials;
 
 import java.sql.Connection;
@@ -24,13 +23,14 @@ import javax.ws.rs.Produces;
  *
  * @author c0643680
  */
+@Path("/testfile")
 public class testfile {
-    @Path("/testfile")
-    
+
     @GET
     @Produces("application/json")
     public String doGet() {
         String str = getResults("SELECT * FROM HotelReservation");
+        System.out.println(str);
         return str;
     }
 
@@ -41,9 +41,11 @@ public class testfile {
         String str = getResults("SELECT * FROM HotelReservation where Email_id=?", id);
         return str;
     }
+
     private String getResults(String query, String... params) {
         JsonArrayBuilder productArray = Json.createArrayBuilder();
         String numChanges = new String();
+        System.out.println(params);
         try (Connection conn = credentials.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(query);
             for (int i = 1; i <= params.length; i++) {
@@ -55,7 +57,7 @@ public class testfile {
             while (rs.next()) {
 
                 JsonObjectBuilder jsonobj = Json.createObjectBuilder()
-                        .add("Name", rs.getInt("Name"))
+                        .add("Name", rs.getString("Name"))
                         .add("Phone_number", rs.getInt("Phone_number"))
                         .add("Email_id", rs.getString("Email_id"))
                         .add("Room_type", rs.getString("Room_type"))
@@ -64,8 +66,8 @@ public class testfile {
                         .add("Check_in", rs.getString("Check_in"))
                         .add("Check_Out", rs.getString("Check_Out"));
 
-                
                 productArray.add(jsonobj);
+                System.out.println(jsonobj.build().toString());
             }
 
         } catch (SQLException ex) {

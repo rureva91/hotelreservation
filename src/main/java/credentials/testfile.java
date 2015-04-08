@@ -38,7 +38,7 @@ public class testfile {
     @Path("{id}")
     @Produces("application/json")
     public String doGet(@PathParam("id") String id) {
-        String str = getResults("SELECT * FROM HotelReservation where name=?", id);
+        String str = getResults("SELECT * FROM HotelReservation where Email_id=?", id);
         return str;
     }
     private String getResults(String query, String... params) {
@@ -55,14 +55,14 @@ public class testfile {
             while (rs.next()) {
 
                 JsonObjectBuilder jsonobj = Json.createObjectBuilder()
-                        .add("name", rs.getInt("name"))
-                        .add("phone number", rs.getInt("phone number"))
-                        .add("email id", rs.getString("email id"))
-                        .add("room type", rs.getString("room type"))
-                        .add("card type", rs.getString("card type"))
-                        .add("card number", rs.getInt("card number"))
-                        .add("check in", rs.getString("check in"))
-                        .add("check out", rs.getString("check out"));
+                        .add("Name", rs.getInt("Name"))
+                        .add("Phone_number", rs.getInt("Phone_number"))
+                        .add("Email_id", rs.getString("Email_id"))
+                        .add("Room_type", rs.getString("Room_type"))
+                        .add("Card_Type", rs.getString("Card_Type"))
+                        .add("Card_Number", rs.getInt("Card_Number"))
+                        .add("Check_in", rs.getString("Check_in"))
+                        .add("Check_Out", rs.getString("Check_Out"));
 
                 
                 productArray.add(jsonobj);

@@ -19,45 +19,32 @@ import javax.ws.rs.core.Response;
  */
 public class credentials {
 
-    public static Connection getConnection() throws SQLException {
-        String hostname = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
-        String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
-        String username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-        String password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-
-        String jdbc = "jdbc:mysql://" + hostname + ":" + port + "/hotelreservation";
-        return DriverManager.getConnection(jdbc, username, password);
-    }
 //    public static Connection getConnection() throws SQLException {
+//        String hostname = System.getenv("OPENSHIFT_MYSQL_DB_HOST");
+//        String port = System.getenv("OPENSHIFT_MYSQL_DB_PORT");
+//        String username = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+//        String password = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
 //
-//        Connection conn = null;
-//        try {
-//            Class.forName("com.mysql.jdbc.Driver");
-//            String jdbc = "jdbc:mysql://localhost/hotelreservation";
-//            String user = "root";
-//            String pass = "";
-//            System.out.println(jdbc);
-//            conn = (Connection) DriverManager.getConnection(jdbc, user, pass);
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(credentials.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return conn;
-//
+//        String jdbc = "jdbc:mysql://" + hostname + ":" + port + "/hotelreservation";
+//        return DriverManager.getConnection(jdbc, username, password);
 //    }
+    public static Connection getConnection() throws SQLException {
+
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String jdbc = "jdbc:mysql://localhost/hotelreservation";
+            String user = "root";
+            String pass = "";
+            System.out.println(jdbc);
+            conn = (Connection) DriverManager.getConnection(jdbc, user, pass);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(credentials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return conn;
+
+    }
 }
 
-//    public static int doUpdate(String sql, String... params) {
-//        int result = -1;
-//        try {
-//            Connection conn = getConnection();
-//            PreparedStatement pstmt = conn.prepareStatement(sql);
-//            for (int i = 0; i < params.length; i++) {
-//                pstmt.setString(i + 1, params[i]);
-//            }
-//            result = pstmt.executeUpdate();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(credentials.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return result;
-//    }
+
 

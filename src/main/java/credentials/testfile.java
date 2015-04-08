@@ -42,10 +42,10 @@ public class testfile {
         return str;
     }
 
-    private String getResults(String query, String... params) {
+  
+     private String getResults(String query, String... params) {
         JsonArrayBuilder productArray = Json.createArrayBuilder();
         String numChanges = new String();
-        System.out.println(params);
         try (Connection conn = credentials.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(query);
             for (int i = 1; i <= params.length; i++) {
@@ -66,8 +66,8 @@ public class testfile {
                         .add("Check_in", rs.getString("Check_in"))
                         .add("Check_Out", rs.getString("Check_Out"));
 
+                numChanges = jsonobj.build().toString();
                 productArray.add(jsonobj);
-                System.out.println(jsonobj.build().toString());
             }
 
         } catch (SQLException ex) {

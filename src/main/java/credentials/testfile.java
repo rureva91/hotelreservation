@@ -50,11 +50,10 @@ public class testfile {
         return str;
     }
 
-  
     private String getResults(String query, String... params) {
         JsonArrayBuilder productArray = Json.createArrayBuilder();
         String myString = new String();
-         try (Connection conn = credentials.getConnection()) {
+        try (Connection conn = credentials.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(query);
             for (int i = 1; i <= params.length; i++) {
                 pstmt.setString(i, params[i - 1]);
@@ -86,9 +85,10 @@ public class testfile {
         }
         return myString;
     }
+
     @POST
     @Consumes("application/json")
-    public void doPost(String str) {
+    public String doPost(String str) {
         JsonParser parser = Json.createParser(new StringReader(str));
         Map<String, String> map = new HashMap<>();
         String name = "", value;
@@ -119,10 +119,13 @@ public class testfile {
         String Card_Number = map.get("Card_Number");
         String Check_in = map.get("Check_in");
         String Check_Out = map.get("Check_Out");
-        doUpdate("insert into HotelReservation ( Name, Phone_number, Email_id, Room_type, Card_Type, Card_Number, Check_in, Check_Out) values ( ?, ?, ?, ?, ?, ?, ?, ?)", Name, Phone_number, Email_id, Room_type, Card_Type, Card_Number, Check_in, Check_Out);
+        doUpdate("insert into HotelReservation ( Name, Phone_number, Email_id, Room_type, Card_Type, "
+                + "Card_Number, Check_in, Check_Out) values ( ?, ?, ?, ?, ?, ?, ?, ?)", Name, Phone_number, 
+                Email_id, Room_type, Card_Type, Card_Number, Check_in, Check_Out);
+        return "1";
     }
 
-        private int doUpdate(String query, String... params) {
+    private int doUpdate(String query, String... params) {
         int numChanges = 0;
         try (Connection conn = credentials.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -135,8 +138,8 @@ public class testfile {
         }
         return numChanges;
     }
-        
- @PUT
+
+    @PUT
     @Path("{id}")
     @Consumes("application/json")
     public void doPut(@PathParam("id") String id, String str) {
@@ -169,7 +172,7 @@ public class testfile {
         String Card_Number = map.get("Card_Number");
         String Check_in = map.get("Check_in");
         String Check_Out = map.get("Check_Out");
-        doUpdate("update HotelReservation set Name = ?, Phone_number = ?, Email_id = ?, Room_type = ?, Card_Type = ?, Card_Number = ?, Check_in = ?, Check_Out = ? where Email_id = ?", Name, Phone_number, Email_id, Room_type, Card_Type, Card_Number, Check_in,Check_Out,id);
+        doUpdate("update HotelReservation set Name = ?, Phone_number = ?, Email_id = ?, Room_type = ?, Card_Type = ?, Card_Number = ?, Check_in = ?, Check_Out = ? where Email_id = ?", Name, Phone_number, Email_id, Room_type, Card_Type, Card_Number, Check_in, Check_Out, id);
 
     }
 
@@ -180,5 +183,3 @@ public class testfile {
     }
 
 }
-
-

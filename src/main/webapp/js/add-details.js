@@ -5,42 +5,50 @@
  */
 
 $(document).ready(function() {
+
     $('#savebutton').click(function() {
-        
-        var Name = $('#fname').val();
-        var Phone_number = $('#phone').val();
-        var Email_id = $('#email').val();
-        var Room_type = $('#roomtype').val();
-        var Card_Type = $('#visa').val();
-        var Card_Number = $('#Card').val();
-        var Check_in = $('#date').val();
-        var Check_Out = $('#date').val();
-        if (feedback === '') {
-            $("#dialogErr").text("Please enter details.");
+        var fname = $('#fname').val();
+        var phone = $('#phone').val();
+        var email = $('#email').val();
+        var roomtype = $('#roomtype').val();
+        var ccard = $('#ccard').val();
+        var Card_Number = $('#Card_Number').val();
+        var in_date = $('#in_date').val();
+        var out_date = $('#out_date').val();
+        var res = {
+            Name: $('#fname').val(),
+            Phone_number: $('#phone').val(),
+            Email_id: $('#email').val(),
+            Room_type: $('#roomtype').val(),
+            Card_Type: "visa",
+            Card_Number: $('#Card_Number').val(),
+            Check_in: $('#in_date').val(),
+            Check_Out: $('#out_date').val()
+        };
+        alert(res);
+        if (fname === '' && phone === '' && email === '' && roomtype === '' && ccard === '' && Card_Number === ''
+                && in_date === '' && out_date === '') {
+            $("#errorMsg").text("All fields are required.");
         } else {
             $.ajax({
-                url: "./reva/testfile/",
+                url: './reva/testfile/',
                 type: 'POST',
-                data:  JSON.stringify({
-                            "Name" : $('#fname').val(),
-                            "Phone_number": $('#phone').val(),
-                            "Email_id" :$('#email').val(),
-                             "Room_type" : $('#roomtype').val(),
-                            "Card_Type": $('#visa').val(),
-                            "Card_Number" :$('#Card').val(),
-                              "Check_in" : $('#date').val(),
-                            "Check_Out": $('#date').val()
-                            
-                        }),
+                data: JSON.stringify(res),
                 contentType: 'application/json; charset=utf-8',
-                dataType: 'json',
+                dataType: 'json', 
                 success: function(data) {
-//                    $("#closeCustomerDialog").click();
-//                    $("#dialogErr").text("");
+                    $("#errorMsg").text("");
+                    $('#Sfname').val(fname);
+                    $('#Sphone').val(phone);
+                    $('#Semail').val(email);
+                    $('#Sroomtype').val(roomtype);
+                    $('#Sccard').val(ccard);
+                    $('#SCard_Number').val(Card_Number);
+                    $('#Sin_date').val(in_date);
+                    $('#Sout_date').val(out_date);
                     window.location.href = "./secondpage.jsp";
                 }
             });
-            }
+        }
     });
-  
 });

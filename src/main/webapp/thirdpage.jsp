@@ -1,6 +1,6 @@
 <%-- 
-    Document   : secondpage
-    Created on : 8-Apr-2015, 8:08:34 PM
+    Document   : thirdpage
+    Created on : 15-Apr-2015, 2:53:40 PM
     Author     : c0643680
 --%>
 
@@ -9,12 +9,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="js/add-details.js" ></script>
-        <script src="js/show-details.js" ></script>
         <title>Reservation</title>
-        <style>
+    </head>
+    
+    <style>
             @import url(http://fonts.googleapis.com/css?family=Lily+Script+One);
             html{
 
@@ -26,6 +24,9 @@
             fieldset {
                 margin-bottom: 10px;
 
+            }
+            h2,h3{
+                text-align: center;
             }
             #color{
                 text-align: center;
@@ -87,38 +88,12 @@
 
 
         <h1 id="color">Hotel Reservation</h1>
+        <h3>Booking Confirmed..</h3>
+        <h2>HAVE A HAPPY STAY!!!</h2>
 
-
-        <section id="top">
-            <h2>Billing Information</h2>
-            <form action="">
-                <fieldset>
-                    <h3 id="billing">
-                        <label for="Sfname">Name:</label>
-                         
-                        <label for="Sphone">PhoneNumber:</label>
-                        
-                        <label for="Semail">Email Id:</label>
-                        
-                        <label for="Sroomtype">Room Type:</label>
-                       
-                        <label for="cardtype">Card Type:</label>
-
-                        <label for="SCard_Number">Card Number:</label>
-                       
-                        <label for="SCheck_in">Check in:</label>
-                       
-                        <label for="SCheck_Out">Check Out:</label>
-                     
-                    </h3>
-                    <input type="button" id="savebutton"  value="Submit">
-                    <input type="reset" id="button"  value="cancel">
-
-            </form>
-        </fieldset>
-    </section>
     <footer id="bottom">
         <p>&copy; 2015 Revathi Rajendran</p>
     </footer>
 </body>
 </html>
+

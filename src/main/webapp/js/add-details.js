@@ -5,13 +5,14 @@
  */
 
 $(document).ready(function() {
-
+      
     $('#savebutton').click(function() {
         var fname = $('#fname').val();
         var phone = $('#phone').val();
         var email = $('#email').val();
+        e_mail = email;
         var roomtype = $('#roomtype').val();
-        var ccard = $('#ccard').val();
+        var ccard = $('#visa').val();
         var Card_Number = $('#Card_Number').val();
         var in_date = $('#in_date').val();
         var out_date = $('#out_date').val();
@@ -25,7 +26,7 @@ $(document).ready(function() {
             Check_in: $('#in_date').val(),
             Check_Out: $('#out_date').val()
         };
-        alert(res);
+        //alert(res);
         if (fname === '' && phone === '' && email === '' && roomtype === '' && ccard === '' && Card_Number === ''
                 && in_date === '' && out_date === '') {
             $("#errorMsg").text("All fields are required.");
@@ -41,6 +42,7 @@ $(document).ready(function() {
                     $('#Sfname').val(fname);
                     $('#Sphone').val(phone);
                     $('#Semail').val(email);
+                    sessionStorage.setItem("email",email);
                     $('#Sroomtype').val(roomtype);
                     $('#Sccard').val(ccard);
                     $('#SCard_Number').val(Card_Number);
@@ -51,4 +53,7 @@ $(document).ready(function() {
             });
         }
     });
+    
+    
+    
 });

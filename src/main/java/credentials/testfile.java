@@ -62,7 +62,7 @@ public class testfile {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-
+                System.out.println("inside the gget");
                 JsonObjectBuilder jsonob = Json.createObjectBuilder()
                         .add("Name", rs.getString("Name"))
                         .add("Phone_number", rs.getInt("Phone_number"))
